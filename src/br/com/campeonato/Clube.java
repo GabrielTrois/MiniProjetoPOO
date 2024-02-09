@@ -20,7 +20,6 @@ public class Clube {
 	}
 	
 	public void perder(int saldoGols) {
-		this.pontos--;
 		this.saldoGols -= saldoGols;
 	}
 
