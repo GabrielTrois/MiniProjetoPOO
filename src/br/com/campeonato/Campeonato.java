@@ -16,11 +16,47 @@ public class Campeonato {
 		
 		int i;
 		
-		System.out.println("Primeiro Grupo");
+		System.out.println("Primeiro Grupo\n");
 		
-		for(i = 1; i <= 6; i+=2) {
+		for(i = 1; i <= clubes.size(); i+=2) {
 			System.out.println("" + this.clubes.get(i-1).getNome() + " X " + this.clubes.get(i).getNome());
 			jogarPartida(this.clubes.get(i-1),this.clubes.get(i));
+			System.out.println();
+		}
+		for(i = 1; i <= clubes.size(); i+=2) {
+			System.out.println("" + this.clubes.get(i).getNome() + " X " + this.clubes.get(i-1).getNome());
+			jogarPartida(this.clubes.get(i),this.clubes.get(i-1));
+			System.out.println();
+		}
+		
+		System.out.println("Segundo Grupo\n");
+		
+		int j = clubes.size()-1;
+		
+		for(i = 1; i <= clubes.size()/2; i++) {
+			System.out.println("" + this.clubes.get(i-1).getNome() + " X " + this.clubes.get(j).getNome());
+			jogarPartida(this.clubes.get(i-1),this.clubes.get(j));
+			System.out.println();
+			j--;
+		}
+		j = clubes.size()-1;
+		for(i = 1; i <= clubes.size()/2; i++) {
+			System.out.println("" + this.clubes.get(j).getNome() + " X " + this.clubes.get(i-1).getNome());
+			jogarPartida(this.clubes.get(j),this.clubes.get(i-1));
+			System.out.println();
+			j--;
+		}
+		
+		System.out.println("Terceiro Grupo\n");
+		
+		for(i = 1; i <= clubes.size()/2; i++) {
+			System.out.println("" + this.clubes.get(i-1).getNome() + " X " + this.clubes.get(i+(clubes.size()/2)-1).getNome());
+			jogarPartida(this.clubes.get(i-1),this.clubes.get(i+(clubes.size()/2)-1));
+			System.out.println();
+		}
+		for(i = 1; i <= clubes.size()/2; i++) {
+			System.out.println("" + this.clubes.get(i+(clubes.size()/2)-1).getNome() + " X " + this.clubes.get(i-1).getNome());
+			jogarPartida(this.clubes.get(i+(clubes.size()/2)-1),this.clubes.get(i-1));
 			System.out.println();
 		}
 	}
