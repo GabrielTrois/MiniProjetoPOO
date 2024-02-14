@@ -1,6 +1,9 @@
 package br.com.campeonato;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Random;
 
 public class Campeonato {
@@ -104,11 +107,29 @@ public class Campeonato {
 	
 	public ArrayList<Clube> getClassificacao() {
 		ArrayList<Clube> test = new ArrayList<Clube>();
+		
+		test = this.clubes;
+		
+		Collections.sort(test, Comparator.comparing(Clube::getPontos));
+		
+		Collections.reverse(test);
+		
+		for (int i = 1; i < test.size()-1; i++) {
+			if(test.get(0).getPontos() == test.get(i).getPontos()) {
+				if(test.get(0).getSaldoGols() > test.get(i).getSaldoGols()) {
+					test.get(0).empatar();
+				} else {
+					test.get(i).empatar();
+				}
+			}
+		}
+		
 		return test;
 	}
 	
 	public Clube getCampeao() {
-		Clube c = new Clube("test");
+		Clube c = new Clube(null);
+		c = getClassificacao().get(0);
 		return c;
 	}
 
