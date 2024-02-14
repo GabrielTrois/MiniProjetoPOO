@@ -3,7 +3,6 @@ package br.com.campeonato;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
 import java.util.Random;
 
 public class Campeonato {
@@ -15,10 +14,12 @@ public class Campeonato {
 	}
 	
 	public void jogarCampeonato() {
+//		Chama o metodo de sortear times
 		sorteiaTimes();
 		
 		int i;
 		
+//		Primeira permutação
 		System.out.println("Primeiro Grupo\n");
 		
 		for(i = 1; i <= clubes.size(); i+=2) {
@@ -32,6 +33,7 @@ public class Campeonato {
 			System.out.println();
 		}
 		
+//		Segunda permutação
 		System.out.println("Segundo Grupo\n");
 		
 		int j = clubes.size()-1;
@@ -50,6 +52,7 @@ public class Campeonato {
 			j--;
 		}
 		
+//		Terceira permutação
 		System.out.println("Terceiro Grupo\n");
 		
 		for(i = 1; i <= clubes.size()/2; i++) {
@@ -67,10 +70,12 @@ public class Campeonato {
 	private void jogarPartida(Clube m, Clube v) {
 		Random rn = new Random();
 		
+//		Quantidade aleatoria de gols de cada time
 		int golsTime1 = rn.nextInt(5);
 		int golsTime2 = rn.nextInt(5);
 		int saldoGols = Math.abs(golsTime1 - golsTime2);
 		
+//		Decide quem ganhou e perdeu
 		if(golsTime1 > golsTime2) {
 			m.ganhar(saldoGols);
 			v.perder(saldoGols);
@@ -97,6 +102,7 @@ public class Campeonato {
 		
 		Random rn = new Random();
 		
+//		Sorteia aleatoriamente a ordem dos times
 		for(int i = copia.size()-1; i >= 0; i--) {
 			int rand = rn.nextInt(i+1);
 			lista.add(copia.get(rand));
@@ -110,10 +116,11 @@ public class Campeonato {
 		
 		test = this.clubes;
 		
+//		Ordena por times pontos
 		Collections.sort(test, Comparator.comparing(Clube::getPontos));
-		
 		Collections.reverse(test);
 		
+//		Fator desempate
 		for (int i = 1; i < test.size()-1; i++) {
 			if(test.get(0).getPontos() == test.get(i).getPontos()) {
 				if(test.get(0).getSaldoGols() > test.get(i).getSaldoGols()) {
@@ -129,15 +136,8 @@ public class Campeonato {
 	
 	public Clube getCampeao() {
 		Clube c = new Clube(null);
+//		Pega a primeira posição do getClassificacao
 		c = getClassificacao().get(0);
 		return c;
-	}
-
-	
-	public ArrayList<Clube> getClubes() {
-		return clubes;
-	}
-	public void setClubes(ArrayList<Clube> clubes) {
-		this.clubes = clubes;
 	}
 }
