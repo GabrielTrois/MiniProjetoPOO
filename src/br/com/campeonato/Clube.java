@@ -11,7 +11,7 @@ public class Clube {
 	}
 	
 	public void ganhar(int saldoGols) {
-		this.pontos += 2;
+		this.pontos += 3;
 		this.saldoGols += saldoGols;
 	}
 	
